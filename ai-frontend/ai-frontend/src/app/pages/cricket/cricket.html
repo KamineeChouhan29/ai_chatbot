@@ -1,0 +1,149 @@
+<!-- <div> <h1 class="text-2xl text-center mt-2 mb-6 font-semibold text-gray-400">Cricket Bot</h1>
+
+    <div class="chat-input flex items-end gap-4 max-w-4xl mx-auto w-full">
+        
+        <textarea
+            [(ngModel)]="inputTextPrompt" 
+            id="message" rows="3" 
+            autofocus
+            class="bg-neutral-secondary-medium border border-slate-800 text-sm bg-slate-900 rounded-[24px] focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-4 shadow-lg placeholder:text-gray-500 dark:placeholder-gray-400 text-white resize-none" 
+            placeholder="Whats in your mind about cricket..."></textarea>
+
+        <button
+            (click)="askButtonClicked()"
+            [disabled]="loadingChat"
+            class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-[24px] disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 shadow-md h-[56px] flex items-center justify-center">
+            {{ loadingChat ? 'Loading...' : 'Ask' }}
+        </button>
+    </div>
+
+    <div class="message-container">
+        <div class="my-5 flex" *ngFor="let m of messagesArray" [ngClass]="{'justify-end': m.own}">
+            <p class="p-3 bg-gray-700 text-white w-fit rounded-2xl max-w-lg">{{ m.content }}</p>
+        </div>
+    </div>
+</div>
+-->
+ <!-- <div> <h1 class="text-2xl text-center mt-2 mb-8 font-semibold text-gray-400">Cricket Bot</h1>
+
+    <div class="chat-input flex items-end gap-4 max-w-4xl mx-auto w-full">
+        
+        <textarea
+            [(ngModel)]="inputTextPrompt" 
+            id="message" rows="3" 
+            autofocus
+            class="bg-neutral-secondary-medium border border-slate-800 text-sm bg-slate-900 rounded-[24px] focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-4 shadow-lg placeholder:text-gray-500 dark:placeholder-gray-400 text-white resize-none" 
+            placeholder="Whats in your mind about cricket..."></textarea>
+
+        <button
+            (click)="askButtonClicked()"
+            [disabled]="loadingChat"
+            class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-4pxl disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 shadow-md h-[56px] flex items-center justify-center">
+            {{ loadingChat ? 'Loading...' : 'Ask' }}
+        </button>
+    </div>
+
+    <div class="message-container">
+        <div class="my-5 flex" *ngFor="let m of messagesArray" [ngClass]="{'justify-end': m.own}">
+            <p class="p-3 bg-gray-700 text-white w-fit rounded-2xl max-w-lg">{{ m.content }}</p>
+        </div>
+    </div>
+</div> 
+ -->
+<div class="flex flex-col h-[92vh] bg-slate-950 rounded-3xl overflow-hidden shadow-2xl">
+
+    <!-- Header -->
+    <div class="border-b border-slate-800 px-6 py-4 bg-slate-900">
+
+        <h1 class="text-3xl font-bold text-center text-white">
+            🏏 Cricket Bot
+        </h1>
+
+        <p class="text-center text-slate-400 mt-1">
+            Ask anything about cricket and get instant answers
+        </p>
+
+    </div>
+
+    <!-- Messages -->
+    <div class="flex-1 overflow-y-auto px-6 py-5 space-y-6">
+
+        <div
+            *ngFor="let m of messagesArray"
+            class="flex"
+            [ngClass]="{
+                'justify-end': m.own,
+                'justify-start': !m.own
+            }">
+
+            <!-- Bot Avatar -->
+            <div
+                *ngIf="!m.own"
+                class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center mr-3">
+
+                🏏
+
+            </div>
+
+            <!-- Message Bubble -->
+            <div
+                class="max-w-[75%] rounded-3xl px-5 py-4 shadow-lg whitespace-pre-wrap"
+
+                [ngClass]="{
+                    'bg-gradient-to-r from-blue-600 to-indigo-600 text-white': m.own,
+                    'bg-slate-800 border border-slate-700 text-gray-200': !m.own
+                }">
+
+                {{ m.content }}
+
+            </div>
+
+        </div>
+
+        <!-- Loading -->
+        <div *ngIf="loadingChat" class="flex">
+
+            <div
+                class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
+
+                🏏
+
+            </div>
+
+            <div
+                class="bg-slate-800 rounded-2xl px-5 py-3 text-white">
+
+                Thinking...
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Input -->
+    <div class="border-t border-slate-800 bg-slate-900 p-5">
+
+        <div class="flex gap-4">
+
+            <textarea
+                [(ngModel)]="inputTextPrompt"
+                rows="2"
+                placeholder="Ask anything about cricket..."
+                class="flex-1 resize-none rounded-3xl bg-slate-800 border border-slate-700 px-5 py-4 text-white focus:ring-2 focus:ring-blue-500 outline-none">
+            </textarea>
+
+            <button
+                (click)="askButtonClicked()"
+                [disabled]="loadingChat"
+                class="h-14 w-14 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-110 transition disabled:opacity-50">
+
+                🏏
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

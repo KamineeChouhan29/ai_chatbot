@@ -1,0 +1,84 @@
+<div class="min-h-screen bg-slate-950 text-white py-10 px-6">
+
+    <!-- Heading -->
+    <div class="max-w-5xl mx-auto text-center">
+
+        <h1 class="text-5xl font-bold">
+            Your
+            <span class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                Feedback
+            </span>
+        </h1>
+
+        <p class="text-slate-400 mt-4 text-lg">
+            Please rate the following features of our AI Assistant.
+        </p>
+
+    </div>
+
+    <!-- Questions -->
+
+    <div class="max-w-4xl mx-auto mt-12 space-y-6">
+
+        <div
+            *ngFor="let q of questions"
+            class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg">
+
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+
+                <h2 class="text-xl font-semibold text-white">
+
+                    {{q.question}}
+
+                </h2>
+
+                <!-- Rating -->
+
+                <div class="flex gap-2 mt-5 md:mt-0">
+
+                    <button
+                        *ngFor="let star of [1,2,3,4,5]"
+                        (click)="rate(q.id,star)"
+                        class="text-3xl transition duration-200 hover:scale-125">
+
+                        <span
+                            [ngClass]="ratings[q.id] >= star ? 'text-yellow-400' : 'text-slate-600'">
+
+                            ★
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Submit -->
+
+    <div class="text-center mt-12">
+
+        <!-- <button
+            (click)="submitFeedback()"
+            class="px-12 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 transition font-semibold">
+
+            Submit Feedback
+
+        </button> -->
+
+        <button
+    (click)="submitFeedback()"
+    [disabled]="loading"
+    class="px-12 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 transition font-semibold">
+
+    {{loading ? 'Submitting...' : 'Submit Feedback'}}
+
+</button>
+
+    </div>
+
+</div>

@@ -1,0 +1,414 @@
+
+<aside id="default-sidebar" 
+  class="fixed top-0 left-0 z-40 w-72 h-full transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+   
+   <div class="h-full px-4 py-6 overflow-y-auto bg-slate-900 border-r border-slate-800/30">
+      <ul class="space-y-3 font-medium">
+         
+         <!-- <li>
+            <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+            class="flex items-center px-3 py-2 text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition duration-200 group">
+               <svg class="w-5 h-5 text-slate-400 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z"/>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
+            </a>
+         </li> -->
+         <li>
+  <a
+    routerLink="/dashboard"
+    routerLinkActive="bg-white text-black shadow-lg"
+    [routerLinkActiveOptions]="{ exact: true }"
+    #dashboard="routerLinkActive"
+    class="flex items-center px-3 py-2 rounded-xl transition duration-200 hover:bg-slate-800 hover:text-white group">
+
+    <svg
+      class="w-5 h-5"
+      [ngClass]="dashboard.isActive ? 'text-black' : 'text-slate-400'"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24">
+
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z"/>
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M13.5 3V11h7.975"/>
+
+    </svg>
+
+    <span
+      class="flex-1 ms-3"
+      [ngClass]="dashboard.isActive ? 'text-black font-semibold' : 'text-slate-300'">
+      Dashboard
+    </span>
+
+  </a>
+</li>
+
+         <!-- <li>
+            <a  routerLink="/chat" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+               class="flex items-center px-3 py-2 text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition duration-200 group">
+               <svg class="shrink-0 w-5 h-5 text-slate-400 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v14M9 5v14M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Ask AI</span>
+               <span class="bg-slate-800 border border-slate-700 text-slate-400 text-[10px] font-semibold px-1.5 py-0.5 rounded-md">Pro</span>
+            </a>
+         </li> -->
+      
+  <li>
+  <a
+    routerLink="/chat"
+    routerLinkActive="bg-white text-black shadow-lg"
+    [routerLinkActiveOptions]="{ exact: true }"
+    #rla="routerLinkActive"
+    class="flex items-center px-3 py-2 rounded-xl transition duration-200 hover:bg-slate-800 hover:text-white group">
+
+    
+    <svg
+      class="shrink-0 w-5 h-5"
+      [ngClass]="rla.isActive ? 'text-black' : 'text-slate-400'"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24">
+
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M15 5v14M9 5v14M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+
+    </svg>
+
+   
+    <span
+      class="flex-1 ms-3 whitespace-nowrap"
+      [ngClass]="rla.isActive ? 'text-black font-semibold' : 'text-slate-300'">
+      Ask AI
+    </span>
+
+    
+    <span
+      class="text-[10px] font-semibold px-1.5 py-0.5 rounded-md"
+      [ngClass]="rla.isActive
+        ? 'bg-black text-white'
+        : 'bg-slate-800 border border-slate-700 text-slate-400'">
+      Pro
+    </span>
+
+  </a>
+</li>
+           
+         <!-- <li>
+            <a routerLink="/cricket" routerLinkActive="active" 
+               class="flex items-center px-3 py-2 text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition duration-200 group">
+               <svg class="shrink-0 w-5 h-5 text-slate-400 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 13h3.439a.991.991 0 0 1 .908.6 3.978 3.978 0 0 0 7.306 0 .99.99 0 0 1 .908-.6H20M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M4 13l2-9h12l2 9M9 7h6m-7 3h8"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Cricket Bot</span>
+               <span class="inline-flex items-center justify-center w-5 h-5 ms-2 text-xs font-semibold text-blue-400 bg-blue-900/40 rounded-full">3</span>
+            </a>
+         </li> -->
+         <li>
+  <a
+    routerLink="/cricket"
+    routerLinkActive="bg-white text-black shadow-lg"
+    [routerLinkActiveOptions]="{ exact: true }"
+    #cricket="routerLinkActive"
+    class="flex items-center px-3 py-2 rounded-xl transition duration-200 hover:bg-slate-800 hover:text-white group">
+
+    <svg
+      class="w-5 h-5"
+      [ngClass]="cricket.isActive ? 'text-black' : 'text-slate-400'"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24">
+
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 13h3.439a.991.991 0 0 1 .908.6 3.978 3.978 0 0 0 7.306 0 .99.99 0 0 1 .908-.6H20M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M4 13l2-9h12l2 9M9 7h6m-7 3h8"/>
+
+    </svg>
+
+    <span
+      class="flex-1 ms-3"
+      [ngClass]="cricket.isActive ? 'text-black font-semibold' : 'text-slate-300'">
+      Cricket Bot
+    </span>
+
+    <span
+      class="text-[10px] font-semibold px-1.5 py-0.5 rounded-md"
+      [ngClass]="cricket.isActive
+        ? 'bg-black text-white'
+        : 'bg-slate-800 border border-slate-700 text-slate-400'">
+
+      3
+
+    </span>
+
+  </a>
+</li>
+
+         <!-- <li>
+            <a routerLink="/image" routerLinkActive="active"
+               class="flex items-center px-3 py-2 text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition duration-200 group">
+               <svg class="shrink-0 w-5 h-5 text-slate-400 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M16 19h4a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-2m-2.236-4a3 3 0 1 0 0-4M3 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Generate Image</span>
+            </a>
+         </li>
+          
+          -->
+
+          <li>
+  <a
+    routerLink="/image"
+    routerLinkActive="bg-white text-black shadow-lg"
+    [routerLinkActiveOptions]="{ exact: true }"
+    #image="routerLinkActive"
+    class="flex items-center px-3 py-2 rounded-xl transition duration-200 hover:bg-slate-800 hover:text-white group">
+
+    <svg
+      class="w-5 h-5"
+      [ngClass]="image.isActive ? 'text-black' : 'text-slate-400'"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24">
+
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-width="2"
+        d="M16 19h4a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-2m-2.236-4a3 3 0 1 0 0-4M3 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+
+    </svg>
+
+    <span
+      class="flex-1 ms-3"
+      [ngClass]="image.isActive ? 'text-black font-semibold' : 'text-slate-300'">
+      Generate Image
+    </span>
+
+  </a>
+</li>
+         <!-- <li class="mt-6">
+   <a 
+        (click)="toggleHistory()"
+        class="flex items-center px-3 py-2 text-slate-300 rounded-xl cursor-pointer hover:bg-slate-800  hover:text-white transition duration-200 group">
+
+        
+        <svg
+            class="shrink-0 w-5 h-5 text-slate-400 group-hover:text-white" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24" height="24" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 10h8M8 14h5M21 12c0 4.418-4.03 8-9 8a9.96 9.96 0 0 1-4-.8L3 20l1.2-4A8 8 0 1 1 21 12Z"/>
+
+        </svg>
+
+        <span class="flex-1 ms-3 whitespace-nowrap">
+            Recent Chats
+        </span>
+
+       
+        <span>
+            {{ showHistory ? '▲' : '▼' }}
+        </span>
+
+      </a>
+</li>
+<li *ngIf="showHistory">
+    <ul>
+
+        <li *ngFor="let h of history">
+
+            <a
+                (click)="openHistory(h)"
+                class="flex items-center px-3 py-2 ml-4 rounded-xl cursor-pointer hover:bg-slate-800">
+
+                {{ h.question }}
+
+            </a>
+
+        </li>
+
+    </ul>
+</li> -->
+
+<li class="mt-6">
+
+  <a
+    (click)="toggleHistory()"
+    class="flex items-center px-3 py-2 rounded-xl cursor-pointer transition duration-200 hover:bg-slate-800 hover:text-white group">
+
+    <!-- Icon -->
+    <svg
+      class="shrink-0 w-5 h-5 text-slate-400 group-hover:text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24">
+
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M8 10h8M8 14h5M21 12c0 4.418-4.03 8-9 8a9.96 9.96 0 0 1-4-.8L3 20l1.2-4A8 8 0 1 1 21 12Z"/>
+
+    </svg>
+
+    <!-- Text -->
+    <span class="flex-1 ms-3 whitespace-nowrap text-slate-300">
+      Recent Chats
+    </span>
+
+    <!-- Badge -->
+    <span
+      class="bg-slate-800 border border-slate-700 text-slate-400 text-[10px] font-semibold px-2 py-0.5 rounded-md">
+
+      {{ history.length }}
+
+    </span>
+
+    <!-- Arrow -->
+    <svg
+      class="w-4 h-4 ml-2 text-slate-400 transition-transform duration-300"
+      [ngClass]="{'rotate-180': showHistory}"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24">
+
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m19 9-7 7-7-7"/>
+
+    </svg>
+
+  </a>
+
+</li>
+
+<!-- History List -->
+<li *ngIf="showHistory">
+
+  <ul class="mt-2 space-y-1">
+
+    <li *ngFor="let h of history">
+
+      <a
+        (click)="openHistory(h)"
+        class="flex items-center ml-4 mr-2 px-3 py-2 rounded-lg cursor-pointer text-sm text-slate-400 hover:bg-slate-800 hover:text-white transition">
+
+        <!-- Dot -->
+        <span class="w-2 h-2 rounded-full bg-slate-500 mr-3"></span>
+
+        <span class="truncate">
+          {{ h.question }}
+        </span>
+
+      </a>
+
+    </li>
+
+  </ul>
+
+</li>
+         <!-- <li>
+            <a href="#" class="flex items-center px-3 py-2 text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition duration-200 group">
+               <svg class="shrink-0 w-5 h-5 text-slate-400 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Feedback</span>
+            </a>
+         </li> -->
+         <li>
+  <a
+   routerLink="/feedback"
+    class="flex items-center px-3 py-2 rounded-xl transition duration-200 hover:bg-slate-800 hover:text-white group">
+
+    <svg
+      class="w-5 h-5 text-slate-400 group-hover:text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24">
+
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"/>
+
+    </svg>
+
+    <span class="flex-1 ms-3 text-slate-300">
+      Feedback
+    </span>
+
+  </a>
+</li>
+
+         <!-- <li>
+            <a href="#" class="flex items-center px-3 py-2 text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition duration-200 group">
+               <svg class="shrink-0 w-5 h-5 text-slate-400 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Help</span>
+            </a>
+         </li> -->
+
+         <li>
+  <a
+    routerLink="/help"
+    class="flex items-center px-3 py-2 rounded-xl transition duration-200 hover:bg-slate-800 hover:text-white group">
+
+    <svg
+      class="w-5 h-5 text-slate-400 group-hover:text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24">
+
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+
+    </svg>
+
+    <span class="flex-1 ms-3 text-slate-300">
+      Help
+    </span>
+
+  </a>
+</li>
+
+      </ul>
+   </div>
+</aside>

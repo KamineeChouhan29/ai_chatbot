@@ -1,0 +1,348 @@
+<!-- 
+<div class="flex flex-col h-[92vh] bg-slate-950 rounded-3xl overflow-hidden shadow-2xl">
+
+   
+    <div class="border-b border-slate-800 px-6 py-4 bg-slate-900">
+
+        <h1 class="text-3xl font-bold text-center text-white">
+            🎨 AI Image Generator
+        </h1>
+
+        <p class="text-center text-slate-400 mt-1">
+            Describe your imagination and let AI create it.
+        </p>
+
+    </div>
+
+    
+    <div class="flex-1 overflow-y-auto px-6 py-6">
+
+       
+        <div *ngIf="loadingChat" class="flex justify-center mt-20">
+
+            <div class="bg-slate-800 rounded-3xl px-8 py-6 text-center shadow-lg">
+
+                <div class="text-5xl mb-4 animate-pulse">
+                    🎨
+                </div>
+
+                <h2 class="text-xl font-semibold text-white">
+                    Generating Image...
+                </h2>
+
+                <p class="text-slate-400 mt-2">
+                    Please wait while AI creates your image.
+                </p>
+
+            </div>
+
+        </div>
+
+        
+        <div
+            *ngIf="imageUrl && !loadingChat"
+            class="flex justify-center items-center h-full">
+
+            <div
+                class="bg-slate-900 border border-slate-700 rounded-3xl p-5 shadow-2xl">
+
+                <img
+                    [src]="imageUrl"
+                    alt="Generated Image"
+                    class="rounded-2xl max-h-[600px] max-w-full object-contain">
+
+            </div>
+
+        </div>
+
+        
+        <div
+            *ngIf="!imageUrl && !loadingChat"
+            class="flex flex-col justify-center items-center h-full text-center">
+
+            <div class="text-7xl mb-5">
+                🖼️
+            </div>
+
+            <h2 class="text-2xl font-semibold text-white">
+                Create Amazing AI Images
+            </h2>
+
+            <p class="text-slate-400 mt-3 max-w-lg">
+                Enter a detailed prompt below and AI will generate a unique image for you.
+            </p>
+
+        </div>
+
+    </div>
+
+   
+    <div class="border-t border-slate-800 bg-slate-900 p-5">
+
+        <div class="flex gap-4">
+
+            <textarea
+                [(ngModel)]="inputTextPrompt"
+                rows="2"
+                placeholder="Describe the image you want to generate..."
+                class="flex-1 resize-none rounded-3xl bg-slate-800 border border-slate-700 px-5 py-4 text-white focus:ring-2 focus:ring-purple-500 outline-none">
+            </textarea>
+
+            <button
+                (click)="askButtonClicked()"
+                [disabled]="loadingChat"
+                class="h-14 w-14 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-110 transition disabled:opacity-50 disabled:cursor-not-allowed">
+
+                🎨
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div> -->
+<div class="flex flex-col h-[92vh] bg-slate-950 rounded-3xl overflow-hidden shadow-2xl">
+
+
+    <!-- Header -->
+    <div class="border-b border-slate-800 px-6 py-4 bg-slate-900">
+
+
+        <h1 class="text-3xl font-bold text-center text-white">
+            🎨 AI Image Generator
+        </h1>
+
+
+        <p class="text-center text-slate-400 mt-1">
+            Ask anything or describe your imagination.
+        </p>
+
+
+    </div>
+
+
+
+
+
+    <!-- Response Area -->
+    <div class="flex-1 overflow-y-auto px-6 py-6">
+
+
+
+        <!-- Loading -->
+
+        <div 
+        *ngIf="loadingChat"
+        class="flex justify-center items-center h-full">
+
+
+            <div
+            class="bg-slate-800 rounded-3xl px-8 py-6 text-center shadow-lg">
+
+
+                <div class="text-5xl mb-4 animate-pulse">
+                    🤖
+                </div>
+
+
+                <h2 class="text-xl font-semibold text-white">
+                    AI Thinking...
+                </h2>
+
+
+                <p class="text-slate-400 mt-2">
+                    Please wait for response.
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Generated Image -->
+
+        <div
+        *ngIf="imageUrl && !loadingChat"
+        class="flex justify-center items-center">
+
+
+            <div
+            class="bg-slate-900 border border-slate-700 rounded-3xl p-5 shadow-2xl">
+
+
+                <img
+                [src]="imageUrl"
+                alt="Generated Image"
+                class="rounded-2xl max-h-[600px] max-w-full object-contain">
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- Text Response -->
+
+
+        <div
+        *ngIf="answer && !loadingChat"
+        class="flex justify-center">
+
+
+            <div
+            class="bg-slate-900 border border-slate-700 rounded-3xl p-6 shadow-xl max-w-4xl w-full">
+
+
+                <h2
+                class="text-xl font-semibold text-white mb-4">
+
+                    🤖 AI Response
+
+                </h2>
+
+
+
+                <p
+                class="text-slate-300 leading-relaxed whitespace-pre-line">
+
+                    {{answer}}
+
+                </p>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- Empty State -->
+
+
+        <div
+        *ngIf="!imageUrl && !answer && !loadingChat"
+        class="flex flex-col justify-center items-center h-full text-center">
+
+
+            <div class="text-7xl mb-5">
+                🖼️
+            </div>
+
+
+            <h2
+            class="text-2xl font-semibold text-white">
+
+                Create Amazing AI Images
+
+            </h2>
+
+
+            <p
+            class="text-slate-400 mt-3 max-w-lg">
+
+                Enter a prompt or ask any question.
+                AI will generate image or answer you.
+
+            </p>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Input Area -->
+
+
+    <div
+    class="border-t border-slate-800 bg-slate-900 p-5">
+
+
+
+        <div
+        class="flex gap-4">
+
+
+
+            <textarea
+
+            [(ngModel)]="inputTextPrompt"
+
+            rows="2"
+
+            placeholder="Generate image or ask anything..."
+
+            class="flex-1 resize-none rounded-3xl
+            bg-slate-800 border border-slate-700
+            px-5 py-4 text-white
+            focus:ring-2 focus:ring-purple-500
+            outline-none">
+
+            </textarea>
+
+
+
+
+
+            <button
+
+            (click)="askButtonClicked()"
+
+            [disabled]="loadingChat"
+
+            class="h-14 w-14 rounded-full
+            bg-gradient-to-r from-purple-600 to-pink-600
+            hover:scale-110 transition
+            disabled:opacity-50
+            disabled:cursor-not-allowed">
+
+
+                🎨
+
+
+            </button>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>

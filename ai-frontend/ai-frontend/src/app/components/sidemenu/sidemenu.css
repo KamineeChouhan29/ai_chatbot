@@ -1,0 +1,39 @@
+/* Sidebar container */
+aside {
+  width: 16rem;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Header */
+aside div {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* List reset */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Hover effect */
+a:hover {
+  background-color: #f3f4f6;
+  border-radius: 8px;
+}
