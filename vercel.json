@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd ai-frontend/ai-frontend && npm install && npm run build --configuration=production",
+  "buildCommand": "npm run build",
   "outputDirectory": "ai-frontend/ai-frontend/dist/ai-frontend/browser",
   "cleanUrls": true,
   "rewrites": [
