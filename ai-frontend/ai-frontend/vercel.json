@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "ng build --configuration production",
+  "buildCommand": "npm run build --configuration production",
   "outputDirectory": "dist/ai-frontend/browser",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
