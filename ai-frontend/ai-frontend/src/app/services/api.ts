@@ -12,8 +12,8 @@ export class Api {
   constructor(private http : HttpClient
   ) {}
 
-  baseUrl= 'http://localhost:8080/api/chat';
-  feedbackBaseUrl = "http://localhost:8080/api/feedback";
+  baseUrl= 'https://ai-chatbot-backend-yds3.onrender.com/api/chat';
+  feedbackBaseUrl = "https://ai-chatbot-backend-yds3.onrender.com/api/feedback";
   getRandomeResponse(prompt : string):Observable<string>{
     return this.http.get(`${this.baseUrl}/get?inputText=${prompt}`,{
      responseType : 'text',
