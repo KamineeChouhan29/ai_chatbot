@@ -16,31 +16,63 @@ public class HuggingApi {
     @Autowired
     private RestTemplate restTemplate;
 
+//     public byte[] generateImage(String prompt) {
+
+//         HttpHeaders headers = new HttpHeaders();
+//         headers.setBearerAuth(apiKey);
+//         headers.setContentType(MediaType.APPLICATION_JSON);
+//         headers.setAccept(List.of(MediaType.IMAGE_PNG));
+
+//         String body = """
+//                 {
+//                   "inputs":"%s"
+//                 }
+//                 """.formatted(prompt);
+
+//         HttpEntity<String> request =
+//                 new HttpEntity<>(body, headers);
+
+//         ResponseEntity<byte[]> response =
+//                 restTemplate.exchange(
+//                         "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
+//                         HttpMethod.POST,
+//                         request,
+//                         byte[].class
+//                 );
+
+//         return response.getBody();
+
+
+    //}
+
     public byte[] generateImage(String prompt) {
+
+    try {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(apiKey);
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(List.of(MediaType.IMAGE_PNG));
 
         String body = """
-                {
-                  "inputs":"%s"
-                }
-                """.formatted(prompt);
+        {
+          "inputs":"%s"
+        }
+        """.formatted(prompt);
 
-        HttpEntity<String> request =
-                new HttpEntity<>(body, headers);
+        HttpEntity<String> request = new HttpEntity<>(body, headers);
 
-        ResponseEntity<byte[]> response =
-                restTemplate.exchange(
-                        "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
-                        HttpMethod.POST,
-                        request,
-                        byte[].class
-                );
+        ResponseEntity<byte[]> response = restTemplate.exchange(
+                "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
+                HttpMethod.POST,
+                request,
+                byte[].class
+        );
 
         return response.getBody();
 
+    } catch (Exception e) {
+        e.printStackTrace();   // <-- Isse actual error logs me dikhega
+        throw e;
     }
+}
 }
