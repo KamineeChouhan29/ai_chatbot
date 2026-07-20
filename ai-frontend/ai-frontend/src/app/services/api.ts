@@ -90,7 +90,7 @@ submitFeedback(feedback: any[]) {
 sendHelpRequest(data: any) {
 
   return this.http.post(
-    "http://localhost:8080/api/help/contact",
+    "https://ai-chatbot-backend-yds3.onrender.com/api/help/contact",
     data,
     {
       responseType: 'text'

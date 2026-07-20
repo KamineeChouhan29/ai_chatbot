@@ -9,7 +9,7 @@ import java.util.Map;
 
 @RestController
     @RequestMapping("/api/help")
-    @CrossOrigin(origins="http://localhost:4200")
+    @CrossOrigin(origins="https://ai-chatbot-brol.vercel.app")
     public class HelpController {
 
 

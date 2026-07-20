@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/chat")
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://ai-chatbot-brol.vercel.app")
 public class ChatController {
 
     @Autowired
