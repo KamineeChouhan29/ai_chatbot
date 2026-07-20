@@ -16,9 +16,8 @@ public class CorsConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of(
-                "https://ai-chatbot-brol.vercel.app",
-                "https://ai-chatbot-system-chi.vercel.app",
+        configuration.setAllowedOriginPatterns(List.of(
+                "https://*.vercel.app",
                 "http://localhost:4200"
         ));
 
