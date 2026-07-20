@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/feedback")
 
-@CrossOrigin(origins = "https://ai-chatbot-brol.vercel.app")
+@CrossOrigin(origins = {"https://ai-chatbot-brol.vercel.app", "https://ai-chatbot-system-chi.vercel.app", "http://localhost:4200"})
 
 public class FeedbackController {
     @Autowired
