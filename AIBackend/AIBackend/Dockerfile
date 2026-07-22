@@ -16,4 +16,4 @@ COPY --from=build /app/target/AIBackend-0.0.1-SNAPSHOT.jar app.jar
 ENV PORT=8080
 EXPOSE 8080
 # Run the application with memory limits
-ENTRYPOINT ["java", "-Xmx300m", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Xmx200m", "-XX:MaxMetaspaceSize=128m", "-Xss512k", "-XX:+UseSerialGC", "-jar", "app.jar"]
