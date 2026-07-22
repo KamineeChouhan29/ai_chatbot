@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["jdk17_headless", "maven"]
+
+[phases.build]
+cmds = ["cd AIBackend/AIBackend && mvn clean package -DskipTests"]
+
+[start]
+cmd = "cd AIBackend/AIBackend && java -Xmx300m -jar target/AIBackend-0.0.1-SNAPSHOT.jar"
