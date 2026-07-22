@@ -59,7 +59,7 @@ public class HuggingApi {
         HttpEntity<java.util.Map<String, String>> request = new HttpEntity<>(body, headers);
 
         ResponseEntity<byte[]> response = restTemplate.exchange(
-                "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
+                "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
                 HttpMethod.POST,
                 request,
                 byte[].class
