@@ -12,8 +12,8 @@ export class Api {
   constructor(private http : HttpClient
   ) {}
 
-  baseUrl= 'https://ai-chatbot-backend-yds3.onrender.com/api/chat';
-  feedbackBaseUrl = "https://ai-chatbot-backend-yds3.onrender.com/api/feedback";
+  baseUrl= 'https://aichatbot-production-8d74.up.railway.app/api/chat';
+  feedbackBaseUrl = "https://aichatbot-production-8d74.up.railway.app/api/feedback";
   getRandomeResponse(prompt : string):Observable<string>{
     return this.http.get(`${this.baseUrl}/get?inputText=${prompt}`,{
      responseType : 'text',
@@ -90,7 +90,7 @@ submitFeedback(feedback: any[]) {
 sendHelpRequest(data: any) {
 
   return this.http.post(
-    "https://ai-chatbot-backend-yds3.onrender.com/api/help/contact",
+    "https://aichatbot-production-8d74.up.railway.app/api/help/contact",
     data,
     {
       responseType: 'text'
