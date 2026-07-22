@@ -67,8 +67,13 @@ public class HuggingApi {
 
         return response.getBody();
 
+    } catch (org.springframework.web.client.HttpStatusCodeException e) {
+        String responseBody = e.getResponseBodyAsString();
+        e.printStackTrace();
+        System.err.println("Hugging Face API Error Body: " + responseBody);
+        throw new RuntimeException("Error from Hugging Face API (" + e.getStatusCode() + "): " + responseBody, e);
     } catch (Exception e) {
-        e.printStackTrace();   // <-- Isse actual error logs me dikhega
+        e.printStackTrace();
         throw new RuntimeException("Error calling Hugging Face API: " + e.getMessage(), e);
     }
 }
