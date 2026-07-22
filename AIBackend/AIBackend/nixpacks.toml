@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["jdk17_headless", "maven"]
+
+[phases.build]
+cmds = ["mvn clean package -DskipTests"]
+
+[start]
+cmd = "java -Xmx200m -XX:MaxMetaspaceSize=128m -Xss512k -XX:+UseSerialGC -jar target/AIBackend-0.0.1-SNAPSHOT.jar"
