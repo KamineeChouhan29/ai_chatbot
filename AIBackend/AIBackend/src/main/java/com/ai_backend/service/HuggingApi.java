@@ -47,29 +47,19 @@ public class HuggingApi {
 
     public byte[] generateImage(String prompt) {
         try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(apiKey);
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setAccept(List.of(MediaType.IMAGE_PNG, MediaType.IMAGE_JPEG));
-
-            java.util.Map<String, String> body = java.util.Map.of("inputs", prompt);
-            HttpEntity<java.util.Map<String, String>> request = new HttpEntity<>(body, headers);
-
-            // Using a more stable free-tier model on Hugging Face router
+            // Using Pollinations.ai for stable, free image generation 
+            // since Hugging Face's free inference API is currently deprecated/unstable.
+            String encodedPrompt = java.net.URLEncoder.encode(prompt, java.nio.charset.StandardCharsets.UTF_8);
+            String url = "https://image.pollinations.ai/prompt/" + encodedPrompt;
+            
             ResponseEntity<byte[]> response = restTemplate.exchange(
-                    "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
-                    HttpMethod.POST,
-                    request,
+                    url,
+                    HttpMethod.GET,
+                    null,
                     byte[].class
             );
-
+            
             return response.getBody();
-
-        } catch (org.springframework.web.client.HttpStatusCodeException e) {
-            String responseBody = e.getResponseBodyAsString();
-            e.printStackTrace();
-            System.err.println("Hugging Face API Error Body: " + responseBody);
-            throw new RuntimeException("Error from Hugging Face API (" + e.getStatusCode() + "): " + responseBody, e);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error generating image: " + e.getMessage(), e);
