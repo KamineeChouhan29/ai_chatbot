@@ -7,64 +7,55 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.Map;
-
 @Service
 public class HuggingApi {
 
-    @Value("${huggingface.api.key}")
-    private String apiKey;
+  @Value("${huggingface.api.key}")
+  private String apiKey;
 
-    @Autowired
-    private RestTemplate restTemplate;
+  @Autowired private RestTemplate restTemplate;
 
-    private static final String API_URL =
-            "https://router.huggingface.co/fal-ai/models/black-forest-labs/FLUX.1-schnell";
+  private static final String API_URL =
+      "https://router.huggingface.co/fal-ai/models/black-forest-labs/FLUX.1-schnell";
 
-    public byte[] generateImage(String prompt) {
+  public byte[] generateImage(String prompt) {
 
-        System.out.println("=================================");
-        System.out.println("IMAGE REQUEST (Using Pollinations.ai API)");
-        System.out.println("Prompt : " + prompt);
-        System.out.println("=================================");
+    System.out.println("=================================");
+    System.out.println("IMAGE REQUEST (Using Pollinations.ai API)");
+    System.out.println("Prompt : " + prompt);
+    System.out.println("=================================");
 
-        try {
+    try {
 
-            // Hugging Face has completely removed free text-to-image generation 
-            // for these models (they return 410 Gone or 400 Bad Request).
-            // To provide a permanent, free fix, we use Pollinations.ai which requires no API key.
-            String encodedPrompt = java.net.URLEncoder.encode(prompt, java.nio.charset.StandardCharsets.UTF_8);
-            String url = "https://image.pollinations.ai/prompt/" + encodedPrompt;
-            
-            ResponseEntity<byte[]> response = restTemplate.exchange(
-                    url,
-                    HttpMethod.GET,
-                    null,
-                    byte[].class
-            );
+      // Hugging Face has completely removed free text-to-image generation
+      // for these models (they return 410 Gone or 400 Bad Request).
+      // To provide a permanent, free fix, we use Pollinations.ai which requires no API key.
+      String encodedPrompt =
+          java.net.URLEncoder.encode(prompt, java.nio.charset.StandardCharsets.UTF_8);
+      String url = "https://image.pollinations.ai/prompt/" + encodedPrompt;
 
-            System.out.println("Status : " + response.getStatusCode());
+      ResponseEntity<byte[]> response =
+          restTemplate.exchange(url, HttpMethod.GET, null, byte[].class);
 
-            if(response.getBody() == null){
-                throw new RuntimeException("Pollinations returned empty image");
-            }
+      System.out.println("Status : " + response.getStatusCode());
 
-            System.out.println("Image Size : " + response.getBody().length + " bytes");
+      if (response.getBody() == null) {
+        throw new RuntimeException("Pollinations returned empty image");
+      }
 
-            return response.getBody();
+      System.out.println("Image Size : " + response.getBody().length + " bytes");
 
-        }
-        catch(HttpStatusCodeException e){
-            System.out.println("HTTP ERROR");
-            System.out.println("Status : " + e.getStatusCode());
-            System.out.println("Body : " + e.getResponseBodyAsString());
+      return response.getBody();
 
-            throw new RuntimeException("API Error : " + e.getResponseBodyAsString());
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            throw new RuntimeException("Image generation failed : " + e.getMessage());
-        }
+    } catch (HttpStatusCodeException e) {
+      System.out.println("HTTP ERROR");
+      System.out.println("Status : " + e.getStatusCode());
+      System.out.println("Body : " + e.getResponseBodyAsString());
+
+      throw new RuntimeException("API Error : " + e.getResponseBodyAsString());
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new RuntimeException("Image generation failed : " + e.getMessage());
     }
+  }
 }

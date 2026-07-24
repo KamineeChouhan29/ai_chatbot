@@ -1,6 +1,5 @@
 package com.ai_backend.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -10,25 +9,24 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class CorsConfig {
 
-    @Bean
-    public CorsFilter corsFilter() {
+  @Bean
+  public CorsFilter corsFilter() {
 
-        CorsConfiguration config = new CorsConfiguration();
+    CorsConfiguration config = new CorsConfiguration();
 
-        //config.addAllowedOrigin("https://ai-chatbot-six-xi-40.vercel.app");
+    // config.addAllowedOrigin("https://ai-chatbot-six-xi-40.vercel.app");
 
-        config.addAllowedOriginPattern("https://*.vercel.app");
-        config.addAllowedOrigin("http://localhost:4200");
+    config.addAllowedOriginPattern("https://*.vercel.app");
+    config.addAllowedOrigin("http://localhost:4200");
 
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        config.setAllowCredentials(true);
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
+    config.setAllowCredentials(true);
 
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
-        source.registerCorsConfiguration("/**", config);
+    source.registerCorsConfiguration("/**", config);
 
-        return new CorsFilter(source);
-    }
+    return new CorsFilter(source);
+  }
 }
