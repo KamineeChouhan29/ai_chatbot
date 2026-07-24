@@ -86,9 +86,6 @@ public ResponseEntity<?> generateImage(
 
 }
 
-
-
-
 //@GetMapping("/history")
 //public List<ChatHistory> getHistory() {
 //    return historyRepository.findAll();

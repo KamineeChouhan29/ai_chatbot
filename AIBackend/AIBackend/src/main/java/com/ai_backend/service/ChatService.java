@@ -106,44 +106,27 @@ public String generateResponse(String inputText) {
 
     public ResponseEntity<?> processImageRequest(String prompt) {
 
+        try {
 
-        String p = prompt.toLowerCase();
-
-
-        boolean imageRequest =
-                p.contains("generate") ||
-                        p.contains("create") ||
-                        p.contains("draw") ||
-                        p.contains("image") ||
-                        p.contains("picture") ||
-                        p.contains("photo");
-
-
-        if(imageRequest){
-
-
-            byte[] image =
-                    huggingApi.generateImage(prompt);
-
+            byte[] image = huggingApi.generateImage(prompt);
 
             return ResponseEntity.ok()
                     .contentType(MediaType.IMAGE_PNG)
                     .body(image);
 
+        } catch(Exception e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity
+                    .status(500)
+                    .body(
+                        "Image generation failed : "
+                        + e.getMessage()
+                    );
+
         }
 
-
-        String answer =
-                chatModel.call(
-                        "You are an AI Image Assistant. "
-                                + "User is asking about image related topic. "
-                                + "If they want generation, guide them. "
-                                + "Otherwise answer normally.\n\n"
-                                + prompt
-                );
-
-
-        return ResponseEntity.ok(answer);
     }
 
     public String loadPromptTemplate(String fileName) throws IOException {
