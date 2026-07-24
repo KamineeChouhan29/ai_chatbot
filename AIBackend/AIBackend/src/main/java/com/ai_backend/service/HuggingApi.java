@@ -55,9 +55,9 @@ public class HuggingApi {
             java.util.Map<String, String> body = java.util.Map.of("inputs", prompt);
             HttpEntity<java.util.Map<String, String>> request = new HttpEntity<>(body, headers);
 
-            // Using a more stable free-tier model on Hugging Face
+            // Using a more stable free-tier model on Hugging Face router
             ResponseEntity<byte[]> response = restTemplate.exchange(
-                    "https://api-inference.huggingface.co/models/prompthero/openjourney",
+                    "https://router.huggingface.co/hf-inference/models/prompthero/openjourney",
                     HttpMethod.POST,
                     request,
                     byte[].class
