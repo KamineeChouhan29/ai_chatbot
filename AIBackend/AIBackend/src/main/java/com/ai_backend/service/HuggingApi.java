@@ -57,7 +57,7 @@ public class HuggingApi {
 
             // Using a more stable free-tier model on Hugging Face router
             ResponseEntity<byte[]> response = restTemplate.exchange(
-                    "https://router.huggingface.co/hf-inference/models/prompthero/openjourney",
+                    "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
                     HttpMethod.POST,
                     request,
                     byte[].class
