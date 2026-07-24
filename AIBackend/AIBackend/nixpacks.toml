@@ -1,5 +1,5 @@
 [variables]
-SPRING_PROFILES_ACTIVE = "local"
+SPRING_PROFILES_ACTIVE = "prod"
 
 [phases.setup]
 nixPkgs = ["jdk17_headless", "maven"]
