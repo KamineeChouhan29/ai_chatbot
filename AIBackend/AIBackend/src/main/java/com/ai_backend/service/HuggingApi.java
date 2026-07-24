@@ -55,9 +55,9 @@ public class HuggingApi {
             java.util.Map<String, String> body = java.util.Map.of("inputs", prompt);
             HttpEntity<java.util.Map<String, String>> request = new HttpEntity<>(body, headers);
 
-            // Using the official Hugging Face API endpoint for FLUX
+            // Using a more stable free-tier model on Hugging Face
             ResponseEntity<byte[]> response = restTemplate.exchange(
-                    "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
+                    "https://api-inference.huggingface.co/models/prompthero/openjourney",
                     HttpMethod.POST,
                     request,
                     byte[].class
