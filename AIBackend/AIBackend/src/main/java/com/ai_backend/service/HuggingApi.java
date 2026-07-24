@@ -24,64 +24,47 @@ public class HuggingApi {
 
     public byte[] generateImage(String prompt) {
 
-        System.out.println("======================================");
-        System.out.println("HUGGING FACE IMAGE REQUEST START");
+        System.out.println("=================================");
+        System.out.println("IMAGE REQUEST (Using Pollinations.ai API)");
         System.out.println("Prompt : " + prompt);
-        System.out.println("API URL : " + API_URL);
-        System.out.println("API Key Present : " + (apiKey != null));
-        System.out.println("API Key Length : " + (apiKey == null ? 0 : apiKey.length()));
-        System.out.println("======================================");
+        System.out.println("=================================");
 
         try {
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(apiKey);
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setAccept(List.of(MediaType.IMAGE_PNG));
-
-            Map<String, String> body = Map.of(
-                    "inputs", prompt
+            // Hugging Face has completely removed free text-to-image generation 
+            // for these models (they return 410 Gone or 400 Bad Request).
+            // To provide a permanent, free fix, we use Pollinations.ai which requires no API key.
+            String encodedPrompt = java.net.URLEncoder.encode(prompt, java.nio.charset.StandardCharsets.UTF_8);
+            String url = "https://image.pollinations.ai/prompt/" + encodedPrompt;
+            
+            ResponseEntity<byte[]> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    null,
+                    byte[].class
             );
 
-            HttpEntity<Map<String, String>> request =
-                    new HttpEntity<>(body, headers);
+            System.out.println("Status : " + response.getStatusCode());
 
-            ResponseEntity<byte[]> response =
-                    restTemplate.exchange(
-                            API_URL,
-                            HttpMethod.POST,
-                            request,
-                            byte[].class
-                    );
+            if(response.getBody() == null){
+                throw new RuntimeException("Pollinations returned empty image");
+            }
 
-            System.out.println("Status Code : " + response.getStatusCode());
-            System.out.println("Response Size : "
-                    + (response.getBody() == null ? 0 : response.getBody().length));
+            System.out.println("Image Size : " + response.getBody().length + " bytes");
 
             return response.getBody();
 
         }
-
-        catch (HttpStatusCodeException e) {
-
+        catch(HttpStatusCodeException e){
             System.out.println("HTTP ERROR");
             System.out.println("Status : " + e.getStatusCode());
             System.out.println("Body : " + e.getResponseBodyAsString());
 
-            throw new RuntimeException(
-                    "HuggingFace Error : " + e.getStatusCode()
-                            + "\n"
-                            + e.getResponseBodyAsString(),
-                    e
-            );
+            throw new RuntimeException("API Error : " + e.getResponseBodyAsString());
         }
-
-        catch (Exception e) {
-
-            System.out.println("GENERAL ERROR");
+        catch(Exception e){
             e.printStackTrace();
-
-            throw new RuntimeException(e);
+            throw new RuntimeException("Image generation failed : " + e.getMessage());
         }
     }
 }
