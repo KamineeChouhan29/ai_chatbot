@@ -16,8 +16,19 @@ public class FeedbackService {
 
   @Autowired private FeedbackRatingRepository ratingRepository;
 
-  public List<FeedbackQuestion> getQuestions() {
+  @jakarta.annotation.PostConstruct
+  public void initQuestions() {
+    if (questionRepository.count() == 0) {
+      questionRepository.save(new FeedbackQuestion("How satisfied are you with the AI's answers?"));
+      questionRepository.save(
+          new FeedbackQuestion("How would you rate the speed of the AI responses?"));
+      questionRepository.save(
+          new FeedbackQuestion("How satisfied are you with the Image Generator?"));
+      questionRepository.save(new FeedbackQuestion("How satisfied are you with the Cricket Bot?"));
+    }
+  }
 
+  public List<FeedbackQuestion> getQuestions() {
     return questionRepository.findAll();
   }
 
