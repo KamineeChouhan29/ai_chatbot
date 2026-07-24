@@ -20,7 +20,7 @@ public class HuggingApi {
     private RestTemplate restTemplate;
 
     private static final String API_URL =
-            "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0";
+            "https://router.huggingface.co/fal-ai/models/black-forest-labs/FLUX.1-schnell";
 
     public byte[] generateImage(String prompt) {
 
@@ -37,7 +37,7 @@ public class HuggingApi {
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(apiKey);
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setAccept(List.of(MediaType.IMAGE_PNG, MediaType.IMAGE_JPEG));
+            headers.setAccept(List.of(MediaType.IMAGE_PNG));
 
             Map<String, String> body = Map.of(
                     "inputs", prompt
