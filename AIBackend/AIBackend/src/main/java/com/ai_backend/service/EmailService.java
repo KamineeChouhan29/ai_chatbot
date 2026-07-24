@@ -2,6 +2,7 @@ package com.ai_backend.service;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -61,6 +62,7 @@ public class EmailService {
   //
   //    }
 
+  @Async
   public void sendEmail(String name, String email, String subject, String message) {
     System.out.println("Inside Email Service");
     try {
