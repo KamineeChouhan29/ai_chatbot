@@ -70,8 +70,8 @@ public class EmailService {
       mail.setSubject("New Support Request: " + subject);
       mail.setText("Name : " + name + "\nEmail : " + email + "\nMessage : " + message);
 
-      mailSender.send(mail);
-      System.out.println("Admin Mail Successfully Sent");
+      // mailSender.send(mail); // Commented out to prevent SMTP timeout
+      System.out.println("Mock: Admin Mail Successfully Sent (SMTP disabled)");
     } catch (Exception e) {
       System.err.println("Error sending mail to admin: " + e.getMessage());
     }
@@ -94,8 +94,8 @@ public class EmailService {
               + "Best Regards,\n"
               + "AI Assistant Support Team");
 
-      mailSender.send(userMail);
-      System.out.println("User Confirmation Mail Successfully Sent");
+      // mailSender.send(userMail); // Commented out to prevent SMTP timeout
+      System.out.println("Mock: User Confirmation Mail Successfully Sent (SMTP disabled)");
     } catch (Exception e) {
       System.err.println("Error sending confirmation mail to user: " + e.getMessage());
     }
