@@ -69,6 +69,7 @@ public class EmailService {
       SimpleMailMessage mail = new SimpleMailMessage();
       mail.setFrom("kamineechouhan75@gmail.com");
       mail.setTo("kamineechouhan75@gmail.com");
+      mail.setReplyTo(email.trim()); // Allows admin to click "Reply" and message the user directly
       mail.setSubject("New Support Request: " + subject);
       mail.setText("Name : " + name + "\nEmail : " + email + "\nMessage : " + message);
 
