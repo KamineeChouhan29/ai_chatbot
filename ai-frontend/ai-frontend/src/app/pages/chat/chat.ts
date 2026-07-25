@@ -112,6 +112,8 @@ ngOnInit(): void {
   this.loadingChat = false;
 
   this.loadHistory();
+  // Tell the sidemenu to reload the recent chats!
+  this.chatState.refreshHistory();
 
   this.cdr.markForCheck();
 

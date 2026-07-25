@@ -30,6 +30,11 @@ export class Sidemenu implements OnInit{
 
   ngOnInit(): void {
     this.loadHistory();
+    
+    // Listen for new chats and refresh the sidebar automatically
+    this.chatState.historyRefresh$.subscribe(() => {
+      this.loadHistory();
+    });
   }
 
   loadHistory() {
