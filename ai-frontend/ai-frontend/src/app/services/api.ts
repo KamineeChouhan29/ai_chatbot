@@ -80,12 +80,11 @@ submitRating(questionId: number, rating: number) {
 }
 
 submitFeedback(feedback: any[]) {
-
   return this.http.post(
     this.feedbackBaseUrl + "/submit",
-    feedback
+    feedback,
+    { responseType: 'text' }
   );
-
 }
 sendHelpRequest(data: any) {
 
