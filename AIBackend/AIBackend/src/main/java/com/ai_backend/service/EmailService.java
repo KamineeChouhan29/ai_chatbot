@@ -81,24 +81,52 @@ public class EmailService {
 
     // 2. Doosra Mail: Jo User ko confirmation ke liye jayega
     try {
-      SimpleMailMessage userMail = new SimpleMailMessage();
-      userMail.setFrom("kamineechouhan75@gmail.com");
-      userMail.setTo(email.trim()); // .trim() lagane se extra spaces hat jayengi
+      jakarta.mail.internet.MimeMessage userMimeMessage = mailSender.createMimeMessage();
+      org.springframework.mail.javamail.MimeMessageHelper helper =
+          new org.springframework.mail.javamail.MimeMessageHelper(userMimeMessage, true, "UTF-8");
 
-      userMail.setSubject("We received your support request");
-      userMail.setText(
-          "Dear "
+      helper.setFrom("kamineechouhan75@gmail.com");
+      helper.setTo(email.trim());
+      helper.setSubject("We received your support request");
+
+      String htmlContent =
+          "<div style=\"font-family: system-ui, sans-serif, Arial; font-size: 16px; color: #333;\">\n"
+              + "  <a style=\"text-decoration: none; outline: none;\" href=\"https://ai-chatbot-brol.vercel.app\" target=\"_blank\">\n"
+              + "    <strong>AI Assistant</strong>\n"
+              + "  </a>\n"
+              + "  <p style=\"padding-top: 16px; border-top: 1px solid #eaeaea;\">\n"
+              + "    Hi "
               + name
-              + ",\n\n"
-              + "Thank you for contacting AI Assistant Support.\n\n"
-              + "We have successfully received your request.\n"
-              + "Our support team will review your issue and get back to you as soon as possible.\n\n"
-              + "Thank you for your patience.\n\n"
-              + "Best Regards,\n"
-              + "AI Assistant Support Team");
+              + ",\n"
+              + "  </p>\n"
+              + "  <p>\n"
+              + "    👋 Thank you for contacting <strong>AI Assistant</strong>!\n"
+              + "  </p>\n"
+              + "  <p>\n"
+              + "    We have successfully received your request:\n"
+              + "  </p>\n"
+              + "  <div style=\"background:#f5f5f5; padding:12px; border-radius:6px; border-left:4px solid #2563eb;\">\n"
+              + "    <strong>"
+              + message
+              + "</strong>\n"
+              + "  </div>\n"
+              + "  <p style=\"margin-top:16px;\">\n"
+              + "    Our AI Assistant team will review your request and respond as soon as possible. Most requests are handled within <strong>24–48 hours</strong>.\n"
+              + "  </p>\n"
+              + "  <p>\n"
+              + "    Thank you for your patience and for using AI Assistant.\n"
+              + "  </p>\n"
+              + "  <p style=\"padding-top:16px; border-top:1px solid #eaeaea;\">\n"
+              + "    Best regards,<br>\n"
+              + "    <strong>AI Assistant Team</strong><br>\n"
+              + "    🤖 Smart • Fast • Reliable\n"
+              + "  </p>\n"
+              + "</div>";
 
-      mailSender.send(userMail);
-      System.out.println("User Confirmation Mail Successfully Sent");
+      helper.setText(htmlContent, true); // true sets it to HTML format
+
+      mailSender.send(userMimeMessage);
+      System.out.println("User Confirmation HTML Mail Successfully Sent");
     } catch (Exception e) {
       System.err.println("Error sending confirmation mail to user: " + e.getMessage());
     }
