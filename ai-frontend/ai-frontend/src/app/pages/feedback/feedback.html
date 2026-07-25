@@ -1,40 +1,50 @@
-<div class="min-h-screen bg-[#0a0a0a] text-white py-10 px-6 font-sans">
-    <!-- Heading -->
-    <div class="max-w-5xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
-            Your
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
-                Feedback
-            </span>
-        </h1>
-        <p class="text-gray-400 mt-4 text-lg">
-            Please rate the following features of our AI Assistant.
-        </p>
-    </div>
+<div class="flex-1 flex flex-col h-[92vh] bg-[#0a0a0a] rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(236,72,153,0.05)] border border-white/5">
 
-    <!-- Questions -->
-    <div class="max-w-4xl mx-auto mt-12 space-y-4">
-        <div *ngFor="let q of questions" class="bg-white/[0.02] border border-white/5 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/[0.04] transition duration-300">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                <h2 class="text-lg font-medium text-gray-200">
-                    {{q.question}}
-                </h2>
-                <!-- Rating -->
-                <div class="flex gap-2 mt-4 md:mt-0">
-                    <button *ngFor="let star of [1,2,3,4,5]" (click)="rate(q.id,star)" class="text-2xl transition duration-200 hover:scale-110 focus:outline-none">
-                        <span [ngClass]="ratings[q.id] >= star ? 'text-blue-500' : 'text-gray-600'">
-                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </span>
-                    </button>
-                </div>
-            </div>
+    <!-- Header -->
+    <div class="border-b border-white/5 px-6 py-4 bg-white/[0.02] backdrop-blur-md flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-pink-500 to-rose-600 flex items-center justify-center shadow-lg shadow-pink-500/20">
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.514"></path></svg>
+        </div>
+        <div>
+            <h1 class="text-lg font-semibold text-white tracking-tight">Feedback</h1>
+            <p class="text-xs text-gray-400 font-medium">Help us improve AI Assistant</p>
         </div>
     </div>
 
-    <!-- Submit -->
-    <div class="text-center mt-12 mb-20">
-        <button (click)="submitFeedback()" [disabled]="loading" class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium transition duration-300 shadow-[0_0_20px_rgba(37,99,235,0.3)] disabled:opacity-50 disabled:cursor-not-allowed">
-            {{loading ? 'Submitting...' : 'Submit Feedback'}}
-        </button>
+    <!-- Content Area -->
+    <div class="flex-1 overflow-y-auto px-4 md:px-8 py-10">
+        
+        <div class="max-w-4xl mx-auto text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+                How did we do?
+            </h2>
+            <p class="text-gray-400 mt-3 text-sm">
+                Please rate the following features. Your feedback is extremely valuable.
+            </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-3">
+            <div *ngFor="let q of questions" class="bg-white/[0.02] border border-white/5 backdrop-blur-sm rounded-2xl p-5 hover:bg-white/[0.04] transition duration-300">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                    <h3 class="text-base font-medium text-gray-200">
+                        {{q.question}}
+                    </h3>
+                    <div class="flex gap-1.5 mt-3 md:mt-0">
+                        <button *ngFor="let star of [1,2,3,4,5]" (click)="rate(q.id,star)" class="text-2xl transition duration-200 hover:scale-110 focus:outline-none">
+                            <span [ngClass]="ratings[q.id] >= star ? 'text-pink-500' : 'text-white/10'">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-10 mb-10">
+            <button (click)="submitFeedback()" [disabled]="loading" class="px-8 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-medium transition duration-300 shadow-[0_0_20px_rgba(236,72,153,0.3)] disabled:opacity-50 disabled:cursor-not-allowed">
+                {{loading ? 'Submitting...' : 'Submit Feedback'}}
+            </button>
+        </div>
+
     </div>
 </div>
