@@ -18,13 +18,22 @@ public class FeedbackService {
 
   @jakarta.annotation.PostConstruct
   public void initQuestions() {
-    if (questionRepository.count() == 0) {
-      questionRepository.save(new FeedbackQuestion("How satisfied are you with the AI's answers?"));
-      questionRepository.save(
-          new FeedbackQuestion("How would you rate the speed of the AI responses?"));
-      questionRepository.save(
-          new FeedbackQuestion("How satisfied are you with the Image Generator?"));
-      questionRepository.save(new FeedbackQuestion("How satisfied are you with the Cricket Bot?"));
+    // If we don't have exactly 10 questions, reset the database and add them
+    if (questionRepository.count() != 10) {
+      // Delete existing ratings first to avoid foreign key constraint errors
+      ratingRepository.deleteAll();
+      questionRepository.deleteAll();
+
+      questionRepository.save(new FeedbackQuestion("How satisfied are you with Ask AI?"));
+      questionRepository.save(new FeedbackQuestion("How accurate were AI answers?"));
+      questionRepository.save(new FeedbackQuestion("Was AI response fast enough?"));
+      questionRepository.save(new FeedbackQuestion("How useful is Cricket Bot?"));
+      questionRepository.save(new FeedbackQuestion("How satisfied are you with Image Generator?"));
+      questionRepository.save(new FeedbackQuestion("How attractive is the UI?"));
+      questionRepository.save(new FeedbackQuestion("Was navigation easy?"));
+      questionRepository.save(new FeedbackQuestion("Would you recommend this AI Assistant?"));
+      questionRepository.save(new FeedbackQuestion("Overall experience with this application?"));
+      questionRepository.save(new FeedbackQuestion("Rate this AI Assistant project."));
     }
   }
 
