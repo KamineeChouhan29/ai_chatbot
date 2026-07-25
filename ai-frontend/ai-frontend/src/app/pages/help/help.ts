@@ -46,15 +46,24 @@ export class Help {
       message: this.helpRequest.message
     };
 
-    // 1. Send actual email directly from the browser using EmailJS!
+    // 1. Send actual email directly from the browser using EmailJS to ADMIN
     emailjs.send(
       'service_dszpd3e',
-      'template_ee6s5yj',
+      'template_s48pi8l', // Admin Template ID
+      templateParams,
+      'IbBM3MQyY1E6v6lp_'
+    )
+    .catch(e => console.error('Admin EmailJS Error:', e));
+
+    // 2. Send auto-reply directly from the browser using EmailJS to USER
+    emailjs.send(
+      'service_dszpd3e',
+      'template_ee6s5yj', // User Template ID
       templateParams,
       'IbBM3MQyY1E6v6lp_'
     )
     .then((response) => {
-      // 2. Also send to our backend so it gets saved in our MySQL Database!
+      // 3. Also send to our backend so it gets saved in our MySQL Database!
       this.api.sendHelpRequest(this.helpRequest).subscribe({
         next: (res) => {
           this.zone.run(() => {
