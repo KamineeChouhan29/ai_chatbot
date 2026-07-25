@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SharedModule } from '../../utils/shared.component';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -15,8 +15,11 @@ import { ChatStateService } from '../../services/chat.service';
   styleUrl: './sidemenu.css',
 })
 export class Sidemenu implements OnInit{
- history: ChatHistory[] = [];
-   showHistory: boolean = false;
+  @Input() isOpen = false;
+  @Output() closeMenu = new EventEmitter<void>();
+
+  history: ChatHistory[] = [];
+  showHistory: boolean = false;
 
 
   constructor(
@@ -45,10 +48,8 @@ export class Sidemenu implements OnInit{
   }
 
   openHistory(item: ChatHistory) {
-
-  this.chatState.openChat(item);
-
-  this.router.navigate(['/chat']);
-
-}
+    this.chatState.openChat(item);
+    this.router.navigate(['/chat']);
+    this.closeMenu.emit();
+  }
 }

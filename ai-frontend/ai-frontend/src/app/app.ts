@@ -12,6 +12,12 @@ import { CommonModule } from '@angular/common';
 })
 export class App {
 
+  isMobileMenuOpen = false;
+
   constructor(public router: Router) {}
   title = 'ai-frontend';
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
 }
