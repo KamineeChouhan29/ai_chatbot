@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Api } from '../../services/api';
+import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-help',
@@ -38,54 +39,55 @@ export class Help {
     this.successMessage = '';
     this.errorMessage = '';
 
-    this.api.sendHelpRequest(this.helpRequest).subscribe({
+    const templateParams = {
+      name: this.helpRequest.name,
+      email: this.helpRequest.email,
+      subject: this.helpRequest.subject,
+      message: this.helpRequest.message
+    };
 
-      next: (res) => {
-
-        this.zone.run(() => {
-
-          this.loading = false;
-
-          this.successMessage =
-            "Thank you for your response. We will try to resolve your problem as soon as possible.";
-
-          this.errorMessage = "";
-
-          // Reset model
-          this.helpRequest = {
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-          };
-
-          // Reset form
-          form.resetForm(this.helpRequest);
-
-          this.cdr.detectChanges();
-
-        });
-
-      },
-
-      error: (err) => {
-
-        this.zone.run(() => {
-
-          console.error(err);
-
-          this.loading = false;
-
-          this.successMessage = '';
-
-          this.errorMessage = "Unable to send request.";
-
-          this.cdr.detectChanges();
-
-        });
-
-      }
-
+    // 1. Send actual email directly from the browser using EmailJS!
+    emailjs.send(
+      'service_dszpd3e',
+      'template_ee6s5yj',
+      templateParams,
+      'IbBM3MQyY1E6v6lp_'
+    )
+    .then((response) => {
+      // 2. Also send to our backend so it gets saved in our MySQL Database!
+      this.api.sendHelpRequest(this.helpRequest).subscribe({
+        next: (res) => {
+          this.zone.run(() => {
+            this.loading = false;
+            this.successMessage = "Thank you for your response. We will try to resolve your problem as soon as possible.";
+            this.errorMessage = "";
+            this.helpRequest = { name: '', email: '', subject: '', message: '' };
+            form.resetForm(this.helpRequest);
+            this.cdr.detectChanges();
+          });
+        },
+        error: (err) => {
+          this.zone.run(() => {
+            console.error(err);
+            this.loading = false;
+            // We still consider it a success because the EmailJS sent the email!
+            this.successMessage = "Thank you for your response. We will try to resolve your problem as soon as possible.";
+            this.errorMessage = "";
+            this.helpRequest = { name: '', email: '', subject: '', message: '' };
+            form.resetForm(this.helpRequest);
+            this.cdr.detectChanges();
+          });
+        }
+      });
+    })
+    .catch((error) => {
+      this.zone.run(() => {
+        console.error('EmailJS Error:', error);
+        this.loading = false;
+        this.successMessage = '';
+        this.errorMessage = "Unable to send request.";
+        this.cdr.detectChanges();
+      });
     });
 
   }
