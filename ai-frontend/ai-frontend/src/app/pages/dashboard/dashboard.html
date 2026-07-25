@@ -1,505 +1,134 @@
+<div class="min-h-screen w-full bg-[#0a0a0a] text-gray-200 relative overflow-hidden font-sans">
 
-<div class="min-h-screen w-full bg-slate-950 text-white relative overflow-hidden">
-
-    <!-- Background Blur -->
-    <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-3xl"></div>
-    <div class="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl"></div>
+    <!-- Subtle Background Glows -->
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-1/2 right-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
     <!-- Main Content -->
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-12">
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-20">
 
         <!-- Hero Section -->
-        <div class="text-center">
-
-            <div
-                class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-gray-300">
-                🚀 Powered by Spring Boot • Angular • AI
+        <div class="text-center flex flex-col items-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 backdrop-blur-md mb-8">
+                <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                Powered by Spring Boot � Angular � AI
             </div>
 
-            <h1 class="mt-8 text-5xl md:text-7xl font-extrabold leading-tight">
-                Welcome to
-                <span
-                    class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white">
+                Next-Gen
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
                     AI Assistant
                 </span>
             </h1>
 
-            <p class="mt-6 text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
-                Chat with AI, generate beautiful images and get instant cricket insights from one intelligent platform.
+            <p class="mt-6 text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Experience intelligent conversations, stunning image generation, and real-time cricket insights in one unified, high-performance platform.
             </p>
-
+            
+            <div class="mt-10 flex gap-4">
+                <a routerLink="/chat" class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium transition duration-300 shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+                    Get Started
+                </a>
+                <a routerLink="/dashboard" class="px-8 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium transition duration-300 backdrop-blur-md">
+                    Learn More
+                </a>
+            </div>
         </div>
 
         <!-- Feature Cards -->
-
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-20">
-
-            <!-- Ask AI -->
-
-            <a
-                routerLink="/chat"
-                class="group rounded-3xl bg-slate-900 border border-slate-800 p-8 hover:border-blue-500 hover:-translate-y-2 duration-300">
-
-                <div
-                    class="w-20 h-20 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-5xl">
-
-                    🤖
-
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-32">
+            
+            <!-- Chat -->
+            <a routerLink="/chat" class="group relative p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition duration-500 overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition duration-500"></div>
+                <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-6 border border-blue-500/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                 </div>
-
-                <h2 class="mt-8 text-3xl font-bold">
-
-                    Ask AI
-
-                </h2>
-
-                <p class="mt-4 text-slate-400 leading-8">
-
-                    Chat with AI, solve coding problems, write content and get intelligent answers instantly.
-
-                </p>
-
-                <button
-                    class="mt-8 w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:scale-105 duration-300">
-
-                    Launch AI
-
-                </button>
-
+                <h3 class="text-xl font-semibold text-white mb-3">Intelligent Chat</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Engage in natural conversations, solve complex coding problems, and generate human-like text instantly.</p>
             </a>
 
             <!-- Cricket -->
-
-            <a
-                routerLink="/cricket"
-                class="group rounded-3xl bg-slate-900 border border-slate-800 p-8 hover:border-green-500 hover:-translate-y-2 duration-300">
-
-                <div
-                    class="w-20 h-20 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center text-5xl">
-
-                    🏏
-
+            <a routerLink="/cricket" class="group relative p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition duration-500 overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition duration-500"></div>
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 border border-emerald-500/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </div>
-
-                <h2 class="mt-8 text-3xl font-bold">
-
-                    Cricket Bot
-
-                </h2>
-
-                <p class="mt-4 text-slate-400 leading-8">
-
-                    Ask anything about IPL, World Cup, players, records and cricket analysis.
-
-                </p>
-
-                <button
-                    class="mt-8 w-full py-3 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 hover:scale-105 duration-300">
-
-                    Launch Cricket Bot
-
-                </button>
-
+                <h3 class="text-xl font-semibold text-white mb-3">Cricket Analytics</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Real-time stats, historical records, and predictive insights powered by our specialized sports model.</p>
             </a>
 
             <!-- Image -->
-
-            <a
-                routerLink="/image"
-                class="group rounded-3xl bg-slate-900 border border-slate-800 p-8 hover:border-purple-500 hover:-translate-y-2 duration-300">
-
-                <div
-                    class="w-20 h-20 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-5xl">
-
-                    🎨
-
+            <a routerLink="/image" class="group relative p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition duration-500 overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition duration-500"></div>
+                <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-6 border border-purple-500/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 </div>
-
-                <h2 class="mt-8 text-3xl font-bold">
-
-                    Image Generator
-
-                </h2>
-
-                <p class="mt-4 text-slate-400 leading-8">
-
-                    Convert your ideas into high-quality AI generated images using text prompts.
-
-                </p>
-
-                <button
-                    class="mt-8 w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-105 duration-300">
-
-                    Generate Image
-
-                </button>
-
+                <h3 class="text-xl font-semibold text-white mb-3">Image Generation</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Transform your text prompts into stunning, high-resolution visual masterpieces in seconds.</p>
             </a>
-
         </div>
 
-        <!-- Statistics -->
-
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
-
-            <div class="rounded-3xl bg-slate-900 border border-slate-800 p-8 text-center">
-
-                <div class="text-5xl">💬</div>
-
-                <h2 class="mt-4 text-5xl font-bold">245</h2>
-
-                <p class="mt-3 text-slate-400">
-
-                    AI Chats
-
-                </p>
-
-            </div>
-
-            <div class="rounded-3xl bg-slate-900 border border-slate-800 p-8 text-center">
-
-                <div class="text-5xl">🏏</div>
-
-                <h2 class="mt-4 text-5xl font-bold">89</h2>
-
-                <p class="mt-3 text-slate-400">
-
-                    Cricket Questions
-
-                </p>
-
-            </div>
-
-            <div class="rounded-3xl bg-slate-900 border border-slate-800 p-8 text-center">
-
-                <div class="text-5xl">🎨</div>
-
-                <h2 class="mt-4 text-5xl font-bold">156</h2>
-
-                <p class="mt-3 text-slate-400">
-
-                    Images Generated
-
-                </p>
-
-            </div>
-
-            <div class="rounded-3xl bg-slate-900 border border-slate-800 p-8 text-center">
-
-                <div class="text-5xl">⭐</div>
-
-                <h2 class="mt-4 text-5xl font-bold">99%</h2>
-
-                <p class="mt-3 text-slate-400">
-
-                    Accuracy
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- Quick Actions -->
-
-        <div class="mt-20 rounded-3xl bg-slate-900 border border-slate-800 p-6 md:p-10">
-
-            <h2 class="text-3xl font-bold">
-
-                Quick Actions
-
-            </h2>
-
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
-
-                <a
-                    routerLink="/chat"
-                    class="rounded-2xl bg-slate-800 hover:bg-slate-700 p-6 transition">
-
-                    🤖 Start New AI Chat
-
-                </a>
-
-                <a
-                    routerLink="/image"
-                    class="rounded-2xl bg-slate-800 hover:bg-slate-700 p-6 transition">
-
-                    🎨 Generate New Image
-
-                </a>
-
-                <a
-                    routerLink="/cricket"
-                    class="rounded-2xl bg-slate-800 hover:bg-slate-700 p-6 transition">
-
-                    🏏 Ask Cricket Bot
-
-                </a>
-
-            </div>
-
-        </div>
-
-    
-   
-<!-- 
-<div class="mt-24 rounded-3xl bg-slate-900 border border-slate-800 p-10">
-
-    <div class="grid lg:grid-cols-2 gap-12">
-
-        
-
-        <div>
-
-            <h2 class="text-4xl font-bold text-white">
-                Need Help?
-            </h2>
-
-            <p class="text-slate-400 mt-5 leading-8 text-lg">
-                If you have any questions, suggestions or face any issue while using
-                AI Assistant, our support team is always ready to help you.
-            </p>
-
-            <a
-                routerLink="/help"
-                class="inline-block mt-8 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 duration-300 font-semibold">
-
-                💬 Contact Support
-
-            </a>
-
-        </div>
-
-        
-
-        <div>
-
-            <h2 class="text-4xl font-bold text-white">
-                Contact Information
-            </h2>
-
-            <div class="mt-6 space-y-5 text-lg">
-
-                <p class="text-slate-300">
-                    📧 <span class="font-semibold">Email</span><br>
-                    <span class="text-blue-400">
-                        your-email@gmail.com
-                    </span>
-                </p>
-
-                <p class="text-slate-300">
-                    ⏰ Monday - Saturday
-                </p>
-
-                <p class="text-slate-300">
-                    🕘 9:00 AM - 6:00 PM
-                </p>
-
-                <p class="text-slate-300">
-                    🚀 Powered by Spring Boot, Angular & AI
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<footer class="mt-16 border-t border-slate-800 pt-10 pb-8">
-
-    <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
-
-        <div>
-
-            <h2 class="text-2xl font-bold text-white">
-                AI Assistant
-            </h2>
-
-            <p class="text-slate-400 mt-2">
-                Smart Chat • AI Images • Cricket Bot
-            </p>
-
-        </div>
-
-        <div class="flex gap-4">
-
-            <a
-                routerLink="/chat"
-                class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-blue-600 transition">
-
-                🤖 Chat
-
-            </a>
-
-            <a
-                routerLink="/image"
-                class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-purple-600 transition">
-
-                🎨 Images
-
-            </a>
-
-            <a
-                routerLink="/cricket"
-                class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-green-600 transition">
-
-                🏏 Cricket
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <div class="mt-8 border-t border-slate-800 pt-6 text-center text-slate-500">
-
-        © 2026 AI Assistant • Developed by
-        <span class="text-white font-semibold">
-            Kaminee Chouhan
-        </span>
-
-    </div>
-
-</footer> -->
-
-
-<div class="mt-20 w-full">
-
-    <div
-        class="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-6 lg:p-14">
-
-        <!-- Background Blur -->
-
-        <div class="absolute -top-32 -left-32 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-32 -right-32 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl"></div>
-
-        <div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-
-            <!-- Left -->
-
-            <div>
-
-                <span
-                    class="inline-flex items-center px-5 py-2 rounded-full bg-slate-800 border border-slate-700 text-slate-300">
-
-                    💬 Need Assistance?
-
-                </span>
-
-                <h2 class="mt-6 text-5xl font-bold leading-tight">
-
-                    We're Here to
-                    <span class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                        Help You
-                    </span>
-
-                </h2>
-
-                <p class="mt-6 text-slate-400 text-lg leading-8">
-
-                    Facing any issue while using AI Assistant?
-                    Contact our support team anytime and we'll help you as quickly as possible.
-
-                </p>
-
-                <a
-                    routerLink="/help"
-                    class="inline-flex items-center gap-3 mt-8 px-8 py-4 rounded-2xl
-                    bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600
-                    hover:scale-105 duration-300 shadow-xl">
-
-                    🚀 Contact Support
-
-                </a>
-
-            </div>
-
-            <!-- Right -->
-
-            <div class="grid gap-5">
-
-                <div
-                    class="rounded-2xl border border-slate-700 bg-slate-800 p-6 hover:border-blue-500 transition">
-
-                    <h3 class="text-xl font-semibold">
-                        📧 Email
-                    </h3>
-
-                    <p class="mt-2 text-slate-400">
-                        kamineechouhan75@gmail.com
-                    </p>
-
+        <!-- Quick Actions & Stats Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+            
+            <!-- Quick Actions -->
+            <div class="lg:col-span-2 rounded-3xl bg-white/[0.02] border border-white/5 p-8 backdrop-blur-sm">
+                <h3 class="text-lg font-medium text-white mb-6">Quick Actions</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <a routerLink="/chat" class="flex items-center gap-3 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition border border-white/5 text-sm font-medium text-gray-300">
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        New Chat
+                    </a>
+                    <a routerLink="/image" class="flex items-center gap-3 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition border border-white/5 text-sm font-medium text-gray-300">
+                        <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Generate Image
+                    </a>
+                    <a routerLink="/cricket" class="flex items-center gap-3 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition border border-white/5 text-sm font-medium text-gray-300">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Ask Cricket Bot
+                    </a>
                 </div>
-
-                <div
-                    class="rounded-2xl border border-slate-700 bg-slate-800 p-6 hover:border-green-500 transition">
-
-                    <h3 class="text-xl font-semibold">
-                        ⏰ Support Hours
-                    </h3>
-
-                    <p class="mt-2 text-slate-400">
-                        Monday - Saturday<br>
-                        9:00 AM - 6:00 PM
-                    </p>
-
-                </div>
-
-                <div
-                    class="rounded-2xl border border-slate-700 bg-slate-800 p-6 hover:border-purple-500 transition">
-
-                    <h3 class="text-xl font-semibold">
-                        🤖 AI Assistant
-                    </h3>
-
-                    <p class="mt-2 text-slate-400">
-                        Spring Boot • Angular • AI Powered
-                    </p>
-
-                </div>
-
             </div>
 
+            <!-- Stats -->
+            <div class="rounded-3xl bg-white/[0.02] border border-white/5 p-8 backdrop-blur-sm flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-400">System Accuracy</span>
+                    <span class="px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-semibold">Live</span>
+                </div>
+                <div class="text-6xl font-bold text-white mb-2 tracking-tighter">99.9<span class="text-3xl text-gray-500">%</span></div>
+                <div class="w-full bg-white/10 rounded-full h-1.5 mt-4">
+                    <div class="bg-blue-500 h-1.5 rounded-full w-[99.9%]"></div>
+                </div>
+            </div>
+            
         </div>
 
-    </div>
-
-</div>
-
-
-
-<footer class="mt-14 border-t border-slate-800 pt-8">
-
-    <div class="flex flex-col md:flex-row justify-between items-center">
-
-        <div>
-
-            <h2 class="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                AI Assistant
-            </h2>
-
-            <p class="text-slate-500 mt-2">
-                Smart Chat • AI Images • Cricket Bot
-            </p>
-
+        <!-- Support Banner -->
+        <div class="mt-6 rounded-3xl bg-gradient-to-r from-blue-900/40 to-indigo-900/40 border border-blue-500/20 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+            
+            <div class="relative z-10 max-w-xl">
+                <h2 class="text-3xl font-bold text-white mb-3">Need Technical Support?</h2>
+                <p class="text-blue-200/70 text-sm leading-relaxed">Our engineering team is standing by to assist you with any issues, feature requests, or integrations.</p>
+            </div>
+            
+            <a routerLink="/help" class="relative z-10 shrink-0 px-8 py-3 rounded-xl bg-white text-blue-900 font-semibold hover:bg-blue-50 transition duration-300 shadow-lg flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                Contact Support
+            </a>
         </div>
 
-        <p class="text-slate-500 mt-6 md:mt-0">
-
-            © 2026 • Developed by
-            <span class="text-white font-semibold">
-                Kaminee Chouhan
-            </span>
-
-        </p>
+        <!-- Footer -->
+        <footer class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500"></div>
+                <span class="font-medium text-gray-300">AI Assistant Platform</span>
+            </div>
+            <p>� 2026 Engineered by <span class="text-gray-300 font-medium">Kaminee Chouhan</span>. All rights reserved.</p>
+        </footer>
 
     </div>
-
-</footer>
-</div>
-
 </div>
