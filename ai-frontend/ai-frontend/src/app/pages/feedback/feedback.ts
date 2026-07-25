@@ -1,5 +1,4 @@
 
-
 import {
   Component,
   OnInit,
@@ -17,7 +16,6 @@ import { Api } from '../../services/api';
   styleUrl: './feedback.css'
 })
 export class Feedback implements OnInit {
-
   questions: any[] = [];
 
   // QuestionId -> Rating
@@ -29,7 +27,7 @@ export class Feedback implements OnInit {
   constructor(
     private api: Api,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
 
   ngOnInit(): void {
@@ -69,12 +67,8 @@ export class Feedback implements OnInit {
 
   }
 
-
-
   submitFeedback() {
-
-
-    if(this.loading){
+    if (this.loading) {
       return;
     }
 
@@ -91,79 +85,20 @@ export class Feedback implements OnInit {
     }));
 
 
-    let completed = 0;
-
-
-
-    feedbackData.forEach(item => {
-
-
-      this.api.submitRating(
-        item.questionId,
-        item.rating
-      )
-      .subscribe({
-
-
-        next: () => {
-
-
-          completed++;
-
-
-
-          if(completed === feedbackData.length){
-
-
-            this.loading = false;
-
-
-
-            // ⭐ Only reset ratings
-            this.ratings = {};
-
-
-
-            this.cdr.detectChanges();
-
-
-
-            alert(
-              "Feedback submitted successfully!"
-            );
-
-
-          }
-
-
-        },
-
-
-
-        error:(err)=>{
-
-
-          console.log(err);
-
-
-          this.loading = false;
-
-
-          alert(
-            "Feedback submission failed!"
-          );
-
-
-        }
-
-
-      });
-
-
+    // Send all 10 ratings in ONE single request to the backend!
+    this.api.submitFeedback(feedbackData).subscribe({
+      next: () => {
+        this.loading = false;
+        // ⭐ Only reset ratings
+        this.ratings = {};
+        this.cdr.detectChanges();
+        alert("Feedback submitted successfully!");
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading = false;
+        alert("Feedback submission failed!");
+      }
     });
-
-
   }
-
-
 }
