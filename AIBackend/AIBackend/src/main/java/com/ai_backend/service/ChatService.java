@@ -23,6 +23,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 
 @Service
@@ -117,5 +119,13 @@ public class ChatService {
       template = template.replace("{" + entry.getKey() + "}", entry.getValue());
     }
     return template;
+  }
+
+  @Scheduled(fixedRate = 3600000) // Runs every hour
+  @Transactional
+  public void cleanupOldChatHistory() {
+      LocalDateTime cutoff = LocalDateTime.now().minusHours(48);
+      historyRepository.deleteByCreatedAtBefore(cutoff);
+      System.out.println("Cleaned up chat history older than 48 hours (" + cutoff + ")");
   }
 }

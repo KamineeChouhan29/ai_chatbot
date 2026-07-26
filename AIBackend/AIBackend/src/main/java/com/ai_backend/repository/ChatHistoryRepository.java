@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ChatHistoryRepository extends JpaRepository<ChatHistory, Long> {
   List<ChatHistory> findByCreatedAtAfterOrderByCreatedAtDesc(LocalDateTime time);
+  void deleteByCreatedAtBefore(LocalDateTime time);
 }
