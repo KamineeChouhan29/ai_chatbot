@@ -334,12 +334,12 @@ class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg">Ask</butto
             </div>
 
             <!-- Message Bubble -->
-            <div class="max-w-[85%] md:max-w-[75%] rounded-2xl px-5 py-3.5 shadow-sm whitespace-pre-wrap text-[15px] leading-relaxed border"
+            <div class="max-w-[85%] md:max-w-[75%] rounded-2xl px-5 py-3.5 shadow-sm text-[15px] leading-relaxed border"
                 [ngClass]="{
                     'bg-blue-600 text-white border-blue-500 rounded-tr-sm': m.own,
                     'bg-white/5 border-white/10 text-gray-200 rounded-tl-sm': !m.own
                 }">
-                <div class="prose prose-invert max-w-none" [innerHTML]="formatMessage(m.content)"></div>
+                <div class="prose prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0" [innerHTML]="formatMessage(m.content)"></div>
             </div>
         </div>
 
