@@ -339,7 +339,13 @@ class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg">Ask</butto
                     'bg-blue-600 text-white border-blue-500 rounded-tr-sm': m.own,
                     'bg-white/5 border-white/10 text-gray-200 rounded-tl-sm': !m.own
                 }">
-                <div class="prose prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0" [innerHTML]="formatMessage(m.content)"></div>
+                
+                <!-- User Message (Plain Text) -->
+                <div *ngIf="m.own" class="whitespace-pre-wrap">{{ m.content }}</div>
+                
+                <!-- AI Message (Markdown) -->
+                <div *ngIf="!m.own" class="prose prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0" [innerHTML]="formatMessage(m.content)"></div>
+                
             </div>
         </div>
 
