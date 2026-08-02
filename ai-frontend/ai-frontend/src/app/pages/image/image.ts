@@ -136,6 +136,7 @@
 import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
 import { SharedModule } from '../../utils/shared.component';
 import { Api } from '../../services/api';
+import { marked } from 'marked';
 
 @Component({
   selector: 'app-image',
@@ -339,6 +340,8 @@ export class Image {
 
   }
 
-
+  formatMessage(text: string | undefined): string {
+    return marked.parse(text ?? '') as string;
+  }
 
 }

@@ -145,7 +145,7 @@
                 </div>
                 <div>
                     <h2 class="text-base font-semibold text-white mb-2">AI Response</h2>
-                    <p class="text-gray-300 leading-relaxed text-[15px] whitespace-pre-line">{{answer}}</p>
+                    <div class="prose prose-invert max-w-none text-gray-300 leading-relaxed text-[15px] [&>*:first-child]:mt-0 [&>*:last-child]:mb-0" [innerHTML]="formatMessage(answer)"></div>
                 </div>
             </div>
         </div>
