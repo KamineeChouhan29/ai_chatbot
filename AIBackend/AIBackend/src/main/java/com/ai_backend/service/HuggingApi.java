@@ -1,5 +1,6 @@
 package com.ai_backend.service;
 
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -21,38 +22,38 @@ public class HuggingApi {
   public byte[] generateImage(String prompt) {
 
     System.out.println("=================================");
-    System.out.println("IMAGE REQUEST (Using Pollinations.ai API)");
-    System.out.println("Prompt : " + prompt);
+    System.out.println("IMAGE REQUEST - HUGGING FACE");
+    System.out.println("Prompt: " + prompt);
     System.out.println("=================================");
 
     try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      headers.setBearerAuth(apiKey);
 
-      // Hugging Face has completely removed free text-to-image generation
-      // for these models (they return 410 Gone or 400 Bad Request).
-      // To provide a permanent, free fix, we use Pollinations.ai which requires no API key.
-      String encodedPrompt =
-          java.net.URLEncoder.encode(prompt, java.nio.charset.StandardCharsets.UTF_8);
-      String url = "https://image.pollinations.ai/prompt/" + encodedPrompt;
+      Map<String, String> body = Map.of("inputs", prompt);
+      HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(body, headers);
 
       ResponseEntity<byte[]> response =
-          restTemplate.exchange(url, HttpMethod.GET, null, byte[].class);
+          restTemplate.exchange(API_URL, HttpMethod.POST, requestEntity, byte[].class);
 
-      System.out.println("Status : " + response.getStatusCode());
+      System.out.println("Status: " + response.getStatusCode());
+      System.out.println("Content-Type: " + response.getHeaders().getContentType());
 
       if (response.getBody() == null) {
-        throw new RuntimeException("Pollinations returned empty image");
+        throw new RuntimeException("Hugging Face returned empty image body");
       }
 
-      System.out.println("Image Size : " + response.getBody().length + " bytes");
+      System.out.println("Image Size: " + response.getBody().length + " bytes");
 
       return response.getBody();
 
     } catch (HttpStatusCodeException e) {
-      System.out.println("HTTP ERROR");
-      System.out.println("Status : " + e.getStatusCode());
-      System.out.println("Body : " + e.getResponseBodyAsString());
+      System.out.println("HUGGING FACE HTTP ERROR");
+      System.out.println("Status: " + e.getStatusCode());
+      System.out.println("Response: " + e.getResponseBodyAsString());
 
-      throw new RuntimeException("API Error : " + e.getResponseBodyAsString());
+      throw new RuntimeException("Hugging Face API Error: " + e.getResponseBodyAsString());
     } catch (Exception e) {
       e.printStackTrace();
       throw new RuntimeException("Image generation failed : " + e.getMessage());
