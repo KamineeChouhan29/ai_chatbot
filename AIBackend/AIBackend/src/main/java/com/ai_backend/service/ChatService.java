@@ -81,6 +81,18 @@ public class ChatService {
     }
   }
 
+  public String loadPromptTemplate(String fileName) throws IOException {
+    Path filePath = new ClassPathResource(fileName).getFile().toPath();
+    return Files.readString(filePath);
+  }
+
+  public String putValuesInPromptTemplate(String template, Map<String, String> variables) {
+    for (Map.Entry<String, String> entry : variables.entrySet()) {
+      template = template.replace("{" + entry.getKey() + "}", entry.getValue());
+    }
+    return template;
+  }
+
   @Scheduled(fixedRate = 3600000) // Runs every hour
   @Transactional
   public void cleanupOldChatHistory() {
